@@ -49,4 +49,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: ${{ inputs.working-directory }}/${{ inputs.artifact-path }}
+          path: |
+            ${{ inputs.working-directory != '.' && format('{0}/{1}', inputs.working-directory, inputs.artifact-path) || inputs.artifact-path }}
