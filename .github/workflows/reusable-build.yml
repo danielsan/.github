@@ -18,16 +18,15 @@ on:
         required: false
         type: string
         default: 'npm run build'
-    outputs:
-      artifact-name:
-        description: 'Name of the build artifact'
-        value: ${{ jobs.build.outputs.artifact-name }}
+      artifact-path:
+        description: 'Path to the build output directory'
+        required: false
+        type: string
+        default: 'dist'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      artifact-name: ${{ steps.upload.outputs.artifact-name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -47,8 +46,7 @@ jobs:
         run: ${{ inputs.build-command }}
 
       - name: Upload build artifacts
-        id: upload
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: ${{ inputs.working-directory }}/dist
+          path: ${{ inputs.working-directory }}/${{ inputs.artifact-path }}
