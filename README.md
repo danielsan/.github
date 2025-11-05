@@ -29,17 +29,17 @@ on: [push, pull_request]
 
 jobs:
   lint:
-    uses: danielsan/.github/.github/workflows/reusable-lint.yml@main
+    uses: danielsan/.github/workflows/reusable-lint.yml@main
     with:
       node-version: '20'
 
   test:
-    uses: danielsan/.github/.github/workflows/reusable-test.yml@main
+    uses: danielsan/.github/workflows/reusable-test.yml@main
     with:
       node-version: '20'
 
   build:
-    uses: danielsan/.github/.github/workflows/reusable-build.yml@main
+    uses: danielsan/.github/workflows/reusable-build.yml@main
     with:
       node-version: '20'
       build-command: 'npm run build'
@@ -72,9 +72,7 @@ Builds Node.js projects and uploads artifacts.
 - `node-version` (optional): Node.js version to use (default: '18')
 - `working-directory` (optional): Working directory (default: '.')
 - `build-command` (optional): Build command to run (default: 'npm run build')
-
-**Outputs:**
-- `artifact-name`: Name of the uploaded build artifact
+- `artifact-path` (optional): Path to the build output directory (default: 'dist')
 
 ## Custom Agents
 
